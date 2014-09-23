@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 Entidades
+  
+  form(action='/entidades',method='get')
+     input(id='q',type='text',value='#{query}',placeholder='',name='q')
+     input(type='submit',value='Buscar')
+
+  ul
+    each ent, index in entidades
+       li= ent.getNombre()
+         if (ent.productos().length)
+            h4 Productos
+            ul 
+              each prod, index in ent.productos()
+                 li= prod.getNombre()
+         else
+            br
+            span (Sin productos en la entidad)
+
+
+  p
+  p 
+  a(href="/") Volver al principal
